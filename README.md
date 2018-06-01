@@ -1,12 +1,5 @@
 # Supported tags and respective Dockerfile links
 
-[`9.2.1`, latest](https://github.com/fjudith/docker-glpi/tree/9.2.1)
-[`9.1.5`](https://github.com/fjudith/docker-glpi/tree/9.1.5)
-[`9.1.3`](https://github.com/fjudith/docker-glpi/tree/9.1.3)
-[`9.1.2`](https://github.com/fjudith/docker-glpi/tree/9.1.2)
-[`9.1.1`](https://github.com/fjudith/docker-glpi/tree/9.1.1)
-
-
 # Introduction
 
 GLPI (formely Gestion Libre de Parc Infortique) is the most free & open source IT asset and service management tool available on the web.
@@ -53,7 +46,7 @@ docker run --name='files' -d \
 -p 32706:80 \
 -v glpi-files:/var/www/html/files \
 --links glpi-md:mysql \
-fjudith/glpi
+manhtukhang/docker-glpi
 ```
 
 ## Initial configuration
@@ -94,18 +87,18 @@ services:
       MYSQL_USER: glpi
     volumes:
     - glpi-db:/var/lib/mysql
-    ports:
-    - 32806:3306/tcp
+#    ports:
+#    - 32806:3306/tcp
   glpi:
-    build: ./
-    image: fjudith/glpi:9.2.1-apache
+#    build: ./
+    image: manhtukhang/docker-glpi:latest
     volumes:
     - glpi-files:/var/www/html/files
     - glpi-plugins:/var/www/html/plugins
     links:
     - glpi-md:mysql
     ports:
-    - 32706:80/tcp
+    - 8080:80/tcp
 ```
 
 And run:
