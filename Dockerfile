@@ -1,8 +1,8 @@
 FROM amd64/php:7.2-apache
 
-MAINTAINER MT <manhtukhang@gmail.com>
+MAINTAINER MakerTim <makertim96@gmail.com>
 
-ENV GLPI_VERSION=9.2.3
+ENV GLPI_VERSION=9.4.3
 ENV GLPI_URL=https://github.com/glpi-project/glpi/releases/download/$GLPI_VERSION/glpi-$GLPI_VERSION.tgz
 ENV TERM=xterm
 
