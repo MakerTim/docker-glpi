@@ -46,7 +46,7 @@ docker run --name='files' -d \
 -p 32706:80 \
 -v glpi-files:/var/www/html/files \
 --links glpi-md:mysql \
-manhtukhang/docker-glpi
+makertim/glpi
 ```
 
 ## Initial configuration
@@ -66,46 +66,6 @@ manhtukhang/docker-glpi
 10. Click on _Use GLPI_.
 11. Logon as `glpi` with password `glpi`.
 
-
-# Docker-Compose
-You can use docker compose to automate the above command if you create a file called docker-compose.yml and put in there the following:
-
-```yaml
-version: '2'
-volumes:
-  glpi-db:
-  glpi-files:
-  glpi-plugins:
-
-services:
-  glpi-md:
-    image: amd64/mariadb:5.5
-    environment:
-      MYSQL_DATABASE: glpi
-      MYSQL_PASSWORD: V3ry1nS3cur3P4ssW0rd
-      MYSQL_ROOT_PASSWORD: V3ry1nS3cur34ls0
-      MYSQL_USER: glpi
-    volumes:
-    - glpi-db:/var/lib/mysql
-#    ports:
-#    - 32806:3306/tcp
-  glpi:
-#    build: ./
-    image: manhtukhang/docker-glpi:latest
-    volumes:
-    - glpi-files:/var/www/html/files
-    - glpi-plugins:/var/www/html/plugins
-    links:
-    - glpi-md:mysql
-    ports:
-    - 8080:80/tcp
-```
-
-And run:
-
-```bash
-docker-compose up -d
-```
 
 # References
 
