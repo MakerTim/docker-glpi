@@ -14,7 +14,7 @@ dpkg-reconfigure --frontend noninteractive tzdata
 set -ex
 
 # Reload Cron
-echo "${CRON_TIMING} /usr/bin/php5 /var/www/html/front/cron.php &>/dev/null" | crontab -u ${APACHE_RUN_USER} -
+echo "${CRON_TIMING} php /var/www/html/front/cron.php &>/dev/null" | crontab -u ${APACHE_RUN_USER} -
 /etc/init.d/cron reload
 /etc/init.d/cron restart
 
