@@ -40,13 +40,14 @@ Run the GLPI container exposing internal port 80 with persistent storage for _fi
 
 ```bash
 docker volume create "glpi-files"
+docker volume create "glpi-plugins"
 
-docker run --name='files' -d \
---restart=always \
--p 32706:80 \
--v glpi-files:/var/www/html/files \
---links glpi-md:mysql \
-makertim/glpi
+docker run --name='GLPI' -d \
+	--restart=always \
+	-p 80:80 \
+	-v glpi-plugins:/var/www/html/plugins \
+	-v glpi-files:/var/www/html/files \
+	makertim/glpi:9.4.3
 ```
 
 ## Initial configuration
@@ -65,7 +66,10 @@ makertim/glpi
 9. Confirm that message `OK - database was initialized` appears, then click _Continue_.
 10. Click on _Use GLPI_.
 11. Logon as `glpi` with password `glpi`.
-
+12. 
+```bash
+docker exec -it GLPI rm ./install/install.php
+```
 
 # References
 
